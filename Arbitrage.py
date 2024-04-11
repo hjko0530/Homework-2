@@ -81,4 +81,4 @@ for i in range(len(path)-1):
     for j in range(len(path[i])-1):
         print(tokens[path[i][j]], end=" ")
         print("->", end=" ")
-print(f"tokenB, tokenB balance={result-5}", end=" ")
+print(f"tokenB, tokenB balance={result}")
