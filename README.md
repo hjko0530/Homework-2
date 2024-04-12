@@ -10,7 +10,6 @@ tokenB(2.9634677311990667) -> tokenA(3.886224926462967) -> tokenD(1.851933060966
 tokenB(1.781761649887093) -> tokenD(0.723227051858478) -> tokenC(1.2895953086398464) -> tokenB(2.492492386984466),
 tokenB balance=5+(18.024373945692943-2.9634677311990667)+(2.492492386984466-1.781761649887093)=20.771636951591248
 
->
 path: tokenB-> tokenA -> tokenD -> tokenC -> path: tokenB-> tokenD -> tokenC -> tokenB, tokenB balance=20.771636951591248(in python)
 tokenB balance=20.691688772656007509(in Solidity test) a ignorable small difference
 
@@ -20,14 +19,14 @@ What is slippage in AMM, and how does Uniswap V2 address this issue? Please illu
 
 > Solution
 The slippage in AMM refers to the difference between the expected price of a trade and the price at which the trade is executed. Slippage occurs primarily due to price movement between the time a transaction is submitted and when it is executed. In AMMs like Uniswap, another significant source of slippage arises from the trade size relative to the liquidity in the pool.
->
+
 Uniswap V2, like its predecessor, addresses slippage by:
-    1.Price Impact as a Function of Trade Size: Smaller trades relative to the pool size experience less slippage. Traders can estimate the impact of their trade size on the price and slippage using the pool's current state.
+1.Price Impact as a Function of Trade Size: Smaller trades relative to the pool size experience less slippage. Traders can estimate the impact of their trade size on the price and slippage using the pool's current state.
 
-    2.Providing Slippage Tolerance Settings: Traders can set their maximum acceptable slippage (e.g., 1%, 0.5%) in their transaction. If the actual slippage exceeds this tolerance due to price movement, the transaction will fail. This protects users from excessive unfavorable price movements.
+2.Providing Slippage Tolerance Settings: Traders can set their maximum acceptable slippage (e.g., 1%, 0.5%) in their transaction. If the actual slippage exceeds this tolerance due to price movement, the transaction will fail. This protects users from excessive unfavorable price movements.
 
-    3.Liquidity Provision: More liquidity in the pool reduces slippage as the ratio of assets changes less dramatically with each trade. Encouraging liquidity provision is thus central to reducing slippage.
->
+3.Liquidity Provision: More liquidity in the pool reduces slippage as the ratio of assets changes less dramatically with each trade. Encouraging liquidity provision is thus central to reducing slippage.
+
 for an example in Uniswap V2:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
@@ -61,7 +60,7 @@ contract MyTradingContract {
         );
     }
 }
->
+
 This function allows a user (or another contract) to call swapETHForAtLeastDAI, sending some ETH and specifying the minimum amount of DAI they are willing to accept. If the amount of DAI that can be bought with the given ETH at the current state of the Uniswap pool is below minDAI, the transaction will revert, thus avoiding unwanted slippage.
 
 
