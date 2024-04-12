@@ -87,6 +87,6 @@ If we took the maximum of the two ratios, someone could supply one additional to
 ## Problem 5
 What is a sandwich attack, and how might it impact you when initiating a swap?
 
-
 > Solution
+A sandwich attack is a type of front-running attack where a malicious actor places two orders around the same time as a target transaction to manipulate the price in their favor. This can impact a swap by causing the trader to receive less favorable prices due to the sudden price movement caused by the attacker's orders.
 
