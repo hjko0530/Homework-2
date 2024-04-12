@@ -118,8 +118,9 @@ def Arbitrage(graph, start):
 graph = [(token1, token2, liquidity[(token1, token2)]) for (token1, token2) in liquidity]
 # Find the profitable path starting from tokenB
 result,path = Arbitrage(graph, "tokenB")
+print("path: ", end=" ")
 for i in range(len(path)):
-    print("path: tokenB->",end=" ")
+    print("tokenB->",end=" ")
     for j in range(len(path[i])-1):
         print(tokens[path[i][j]], end=" ")
         print("->", end=" ")
