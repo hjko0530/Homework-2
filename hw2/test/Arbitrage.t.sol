@@ -79,14 +79,23 @@ contract Arbitrage is Test {
         /**
          * Please add your solution below
          */
-        address[] memory path = new address[](6);
-        path[0] = address(tokenB);
-        path[1] = address(tokenA);
-        path[2] = address(tokenE);
-        path[3] = address(tokenD);
-        path[4] = address(tokenC);
-        path[5] = address(tokenB);
-        uint256[] memory amounts = router.swapExactTokensForTokens(5 ether, 0, path, address(arbitrager), block.timestamp + 1000);
+        address[] memory path1 = new address[](5);
+        path1[0] = address(tokenB);
+        path1[1] = address(tokenA);
+        path1[2] = address(tokenD);
+        path1[3] = address(tokenC);
+        path1[4] = address(tokenB);
+        address[] memory path2 = new address[](4); 
+        path2[0] = address(tokenB);
+        path2[1] = address(tokenD);
+        path2[2] = address(tokenC);
+        path2[3] = address(tokenB);
+
+
+        uint256[] memory amounts = router.swapExactTokensForTokens( 2.9634677311990667 ether, 0, path1, address(arbitrager), block.timestamp + 1000);
+        tokenB.approve(address(router), 5 ether);
+        amounts = router.swapExactTokensForTokens(1.781761649887093 ether, 0, path2, address(arbitrager), block.timestamp + 1000);
+
         uint256 tokensAfter = tokenB.balanceOf(arbitrager);
         assertGt(tokensAfter, 20 ether);
         console.log("After Arbitrage tokenB Balance: %s", tokensAfter);
